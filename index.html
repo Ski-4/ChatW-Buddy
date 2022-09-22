@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      body { margin: 0; background: white; padding-bottom: 3rem;font-family: Roboto, Helvetica, Arial, sans-serif; }
+
+      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; position: fixed; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #input { border: none; padding: 0 0.5rem; flex-grow: 1; border-radius: 0.2rem; margin: 0.25rem; }
+      #input:focus { outline: none; }
+      #body-container { background: rgb(177, 187, 197); height: 600px; width: 800px; margin: 0 auto; padding: 1em 0;}
+      #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+
+      #messages { list-style-type: none; padding: 0; }
+      #messages { margin-top: 1rem; padding: 0rem 1rem; }
+      .user-end { background: #efefef; text-align: right }
+
+    </style>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body>
+    <div id="body-container">
+        <div id="messages"></div>
+    </div>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io();
+    var form = document.getElementById('form');
+    var input = document.getElementById('input');
+    var messages = document.getElementById('messages');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+            socket.emit('chat message', input.value);
+            input.value = '';
+        }
+    });
+
+    socket.on('chat message1', function(res) {
+            var body = document.createElement('div');
+            var bodyContent = document.createElement('div');
+            var item = document.createElement('div');
+            var user = document.createElement('div');
+            var item1 = document.createElement('div');
+            var item2 = document.createElement('div');
+            item.style.padding = "0.3rem 0.5rem";
+            item.style.width = "fit-content";
+            item.style.fontSize = "15px";
+            item.style.boxShadow = "2px 2px 3px rgba(0,0,0,0.1)";
+            if(res.id==res.prevId) {
+                body.style.marginTop = "0.2rem";
+            }
+            else {
+                body.style.marginTop = "0.8rem";
+                if(res.id!=socket.id) {
+                    let audio = new Audio('notification.wav');
+                    audio.play();
+                }
+            }
+            item.style.background = "white";
+            item.style.borderRadius = "0.3rem";
+            item1.textContent = res.msg;
+            item2.style.fontSize = "0.7rem";
+            item2.style.color = "grey";
+            item2.style.paddingTop = "0.1rem";
+            item2.style.paddingTop = "0.1rem";
+            item2.style.textAlign = "right";
+            item2.textContent = res.time;
+            if(res.id===socket.id) {
+                bodyContent.style.display="flex"
+                bodyContent.style.justifyContent="flex-end"
+            }else {
+                item.classList.add('animate__animated', 'animate__zoomIn', 'animate__faster');
+                user.style.width = "fit-content";
+                user.style.background ="white"
+                user.style.padding = "0.1rem 0.5rem";
+                user.style.fontSize = "13px";
+                user.style.borderRadius = "0.3rem";
+                user.style.marginBottom = "0.2rem";
+                user.style.fontWeight = "bold";
+                user.textContent = `user ${res.tag}`;
+                user.style.color = "rgba(0,0,0,0.5)";
+                if(res.tag===1) {
+                    user.style.color = "#e6194B";
+                }else if(res.tag===2) {
+                    user.style.color = "#f58231";
+                }else if(res.tag===3) {
+                    user.style.color = "#ffe119";
+                }else if(res.tag===4) {
+                    user.style.color = "#bfef45";
+                }else if(res.tag===5) {
+                    user.style.color = "#3cb44b";
+                }else if(res.tag===6) {
+                    user.style.color = "#42d4f4";
+                }else if(res.tag===7) {
+                    user.style.color = "#4363d8";
+                }else if(res.tag===8) {
+                    user.style.color = "#911eb4";
+                }else if(res.tag===9) {
+                    user.style.color = "#f032e6";
+                }else {
+                    user.style.color = "#a9a9a9";
+                }
+
+                if(res.id!=res.prevId)
+                    body.appendChild(user);
+             }
+            item.appendChild(item1);
+            item.appendChild(item2);
+            bodyContent.appendChild(item);
+            body.appendChild(bodyContent);
+            messages.appendChild(body);
+            window.scrollTo(0, document.body.scrollHeight);
+    });
+    </script>
+  </body>
+</html>
