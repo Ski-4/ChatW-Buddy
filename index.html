@@ -8,17 +8,23 @@
         }
       body { margin: 0; background: rgb(171, 184, 198); font-family: Roboto, Helvetica, Arial, sans-serif; }
       #form-container { display: flex; justify-content: center; width: 100% }  
-      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; width: 800px; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
+      #form { background: rgba(0, 0, 0, 0.15); padding: 0.25rem; width: 900px; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10px); }
       #input { border: none; padding: 0 0.5rem; flex-grow: 1; border-radius: 0.2rem; margin: 0.25rem; }
       #input:focus { outline: none; }
       #body-container {position: relative;display: flex; flex-direction: column; height: 100%;}
-      #img-container { background: url('doodle.png'); filter: contrast(200%); opacity: 0.25; position: fixed; top: 0; bottom: 0; width: 800px; z-index: -1; box-shadow: 5px 0px 10px rgba(255,255,255), -5px 0px 10px rgba(255,255,255)}
-      #chatBody-container { flex-grow: 1; position: relative; width: 800px; margin: 0 auto; padding: 1em 0; overflow-y: auto;}
+      #img-container { background: url('doodle.png'); filter: contrast(200%); opacity: 0.25; position: fixed; top: 0; bottom: 0; width: 900px; z-index: -1; box-shadow: 5px 0px 10px rgba(255,255,255), -5px 0px 10px rgba(255,255,255)}
+      #chatBody-container { flex-grow: 1; position: relative; width: 900px; margin: 0 auto; padding: 1em 0; overflow-y: auto;}
       #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
 
       #messages { list-style-type: none; padding: 0; }
       #messages { margin-top: 1rem; padding: 0rem 1.5rem; }
       .user-end { background: #efefef; text-align: right }
+
+      @media screen and (max-width: 900px) {
+        #img-container { width: 100%;}
+        #form { width: 100%; }
+        #chatBody-container { width: 100%; }
+      }
 
     </style>
     <link
