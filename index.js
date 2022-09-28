@@ -21,7 +21,7 @@ io.on("connection", (socket) => {
     idList[socket.id] = id;
     id++;
 
-    io.emit("update", `user ${idList[socket.id]} : Connected`);
+    io.emit("update", `user ${idList[socket.id]} : connected`);
 
     socket.on("typing", (data) => {
         console.log("typing");
@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("disconnect", () => {
-        io.emit("update", `user ${idList[socket.id]} : Disconnected`);
+        io.emit("update", `user ${idList[socket.id]} : disconnected`);
         console.log("user disconnected");
     });
 });
