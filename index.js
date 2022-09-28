@@ -1,3 +1,4 @@
+const { time } = require("console");
 const express = require("express");
 const app = express();
 const http = require("http");
@@ -32,16 +33,12 @@ io.on("connection", (socket) => {
     socket.on("chat message", (msg) => {
         let currTime = new Date();
         console.log("message: " + msg);
-        let hour = currTime.getHours();
-        let min = currTime.getMinutes();
-        if (hour < 10) hour = "0" + hour;
-        if (min < 10) min = "0" + min;
         res = {
             msg,
             id: socket.id,
             tag: idList[socket.id],
             prevId,
-            time: hour + ":" + min,
+            currTime,
         };
         prevId = socket.id;
         io.emit("chat message1", res);

@@ -58,6 +58,16 @@
     var messages = document.getElementById('messages');
     let audio = new Audio('notification.wav');
 
+    function getTime(date) {
+        let currTime = new Date(date);
+        let hour = currTime.getHours();
+        let min = currTime.getMinutes();
+        if (hour < 10) hour = "0" + hour;
+        if (min < 10) min = "0" + min;
+
+        return hour + ":" + min;   
+    }
+
     input.focus();
 
     input.addEventListener('keyup', function(e) {
@@ -126,7 +136,7 @@
             item2.style.paddingTop = "0.1rem";
             item2.style.paddingTop = "0.1rem";
             item2.style.textAlign = "right";
-            item2.textContent = res.time;
+            item2.textContent = getTime(res.currTime);
             if(res.id===socket.id) {
                 bodyContent.style.display="flex"
                 bodyContent.style.justifyContent="flex-end"
