@@ -13,7 +13,7 @@
       #input { border: none; padding: 0 0.5rem; flex-grow: 1; border-radius: 0.2rem; margin: 0.25rem; }
       #input:focus { outline: none; }
       #body-container {position: relative;display: flex; flex-direction: column; height: 100%;}
-      #img-container { background: url('doodle.png'); filter: contrast(200%); opacity: 0.2; position: fixed; top: 0; bottom: 0; width: 900px; z-index: -1; box-shadow: 5px 0px 10px rgba(255,255,255), -5px 0px 10px rgba(255,255,255)}
+      #img-container { background: url('doodle.png'); filter: contrast(200%); opacity: 0.15; position: fixed; top: 0; bottom: 0; width: 900px; z-index: -1; box-shadow: 5px 0px 10px rgba(255,255,255), -5px 0px 10px rgba(255,255,255)}
       #chatBody-container { flex-grow: 1; position: relative; width: 900px; margin: 0 auto; padding: 1em 0; overflow-y: auto;}
       #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
 
@@ -112,10 +112,10 @@
             var user = document.createElement('div');
             var item1 = document.createElement('div');
             var item2 = document.createElement('div');
-            item.style.padding = "0.5rem 0.5rem";
+            item.style.padding = "0.4rem 0.4rem";
             item.style.width = "fit-content";
-            item.style.fontSize = "15px";
-            item.style.boxShadow = "2px 2px 5px rgba(0,0,0,0.1)";
+            item.style.fontSize = "14px";
+            item.style.boxShadow = "2px 2px 2px rgba(0,0,0,0.1)";
             if(res.id==res.prevId) {
                 body.style.marginTop = "0.2rem";
             }
